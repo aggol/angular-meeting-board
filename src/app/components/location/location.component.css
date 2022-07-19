@@ -1,0 +1,18 @@
+.form-check-input {
+  height: 25px;
+  width: 25px;
+}
+
+.form-check-input:checked[type='checkbox'] {
+  background-color: #212529;
+  border-color: #212529;
+}
+
+::placeholder {
+  opacity: 50%;
+}
+
+input:disabled {
+  background-color: #f3f3f3;
+  border-color: #f3f3f3;
+}
