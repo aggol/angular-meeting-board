@@ -2,7 +2,7 @@
   <div class="row divider-btm">
     <div class="col-12"></div>
   </div>
-  <div class="form">
+  <div class="form" [formGroup]="form">
     <div class="row">
       <div class="col-8 divider-rght">
         <div class="row mt-5 mb-5">
@@ -11,15 +11,30 @@
               <span>New meeting</span>
             </h4>
 
-            <app-meeting-type></app-meeting-type>
-            <app-meeting-name></app-meeting-name>
-            <app-date-and-time></app-date-and-time>
-            <app-location></app-location>
+            <app-meeting-type
+              [meetingTypeAbstractControl]="meetingTypeAbstractControl"
+            ></app-meeting-type>
+            <app-meeting-name
+              [meetingNameAbstractControl]="meetingNameAbstractControl"
+            ></app-meeting-name>
+            <app-date-and-time
+              [dateAbstractControl]="dateAbstractControl"
+              [timeFromAbstractControl]="timeFromAbstractControl"
+              [timeToAbstractControl]="timeToAbstractControl"
+            ></app-date-and-time>
+            <app-location
+              [addressAbstractControl]="addressAbstractControl"
+              [onlineMeetingAbstractControl]="onlineMeetingAbstractControl"
+            ></app-location>
           </div>
         </div>
       </div>
       <div class="col-4">
-        <app-invitees></app-invitees>
+        <app-invitees
+          [allInviteesAbstractControl]="allInviteesAbstractControl"
+          [guestAbstractControl]="guestAbstractControl"
+          [boardInviteeAbstractControl]="boardInviteeAbstractControl"
+        ></app-invitees>
       </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-meeting-name',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./meeting-name.component.css'],
 })
 export class MeetingNameComponent implements OnInit {
+  @Input() meetingNameAbstractControl: AbstractControl;
   constructor() {}
 
   ngOnInit() {}

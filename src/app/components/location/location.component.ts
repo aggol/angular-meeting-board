@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-location',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./location.component.css'],
 })
 export class LocationComponent implements OnInit {
+  @Input() addressAbstractControl: AbstractControl;
+  @Input() onlineMeetingAbstractControl: AbstractControl;
+
   constructor() {}
 
   ngOnInit() {}

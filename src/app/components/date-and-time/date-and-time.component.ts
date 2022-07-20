@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-date-and-time',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./date-and-time.component.css'],
 })
 export class DateAndTimeComponent implements OnInit {
+  @Input() dateAbstractControl: AbstractControl;
+  @Input() timeFromAbstractControl: AbstractControl;
+  @Input() timeToAbstractControl: AbstractControl;
+
   constructor() {}
 
   ngOnInit() {}

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MeetingTypeComponent } from './components/meeting-type/meeting-type.component';
@@ -10,7 +10,7 @@ import { LocationComponent } from './components/location/location.component';
 import { InviteesComponent } from './components/invitees/invitees.component';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule],
   declarations: [
     AppComponent,
     MeetingTypeComponent,

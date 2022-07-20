@@ -1,5 +1,5 @@
 import { Component, OnInit, VERSION } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'my-app',
@@ -16,18 +16,57 @@ export class AppComponent implements OnInit {
 
   private initForm(): void {
     this.form = new FormGroup({
-      meetingName: new FormControl(),
       meetingType: new FormControl(),
+      meetingName: new FormControl(),
       date: new FormControl(),
       timeFrom: new FormControl(),
       timeTo: new FormControl(),
-      location: new FormControl(),
-      brokeragePercent: new FormControl(),
-      brokeragePln: new FormControl(),
+      address: new FormControl(),
+      onlineMeeting: new FormControl(),
       allInvitees: new FormControl(),
       guest: new FormControl(),
       boardInvitee: new FormControl(),
     });
     // this.setForm();
+  }
+
+  get meetingTypeAbstractControl(): AbstractControl {
+    return this.form.get('meetingType');
+  }
+
+  get meetingNameAbstractControl(): AbstractControl {
+    return this.form.get('meetingName');
+  }
+
+  get dateAbstractControl(): AbstractControl {
+    return this.form.get('date');
+  }
+
+  get timeFromAbstractControl(): AbstractControl {
+    return this.form.get('timeFrom');
+  }
+
+  get timeToAbstractControl(): AbstractControl {
+    return this.form.get('timeTo');
+  }
+
+  get addressAbstractControl(): AbstractControl {
+    return this.form.get('address');
+  }
+
+  get onlineMeetingAbstractControl(): AbstractControl {
+    return this.form.get('onlineMeeting');
+  }
+
+  get allInviteesAbstractControl(): AbstractControl {
+    return this.form.get('allInvitees');
+  }
+
+  get guestAbstractControl(): AbstractControl {
+    return this.form.get('guest');
+  }
+
+  get boardInviteeAbstractControl(): AbstractControl {
+    return this.form.get('boardInvitee');
   }
 }

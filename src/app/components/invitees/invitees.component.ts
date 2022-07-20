@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-invitees',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./invitees.component.css'],
 })
 export class InviteesComponent implements OnInit {
-  constructor() {}
   isButtonBoardActive: boolean = true;
   isButtonGuestsActive: boolean = false;
+  @Input() allInviteesAbstractControl: AbstractControl;
+  @Input() guestAbstractControl: AbstractControl;
+  @Input() boardInviteeAbstractControl: AbstractControl;
+
+  constructor() {}
 
   ngOnInit() {}
 
