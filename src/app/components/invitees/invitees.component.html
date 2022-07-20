@@ -1,0 +1,78 @@
+<div class="row mt-5 ms-4">
+  <h5>
+    <label>Invitees</label>
+  </h5>
+  <ul class="nav nav-tabs divider-btm" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="board-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#board"
+        type="button"
+        role="tab"
+      >
+        Board
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="guests-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#guests"
+        type="button"
+        role="tab"
+      >
+        Guests
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="col-12 mt-2">
+      <div class="tab-pane fade" id="board" role="tabpanel">
+        <input
+          type="search"
+          class="search form-control mb-3 mt-3"
+          placeholder="Search..."
+        />
+        <div class="form-check mb-3">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="all"
+            checked
+          />
+
+          <label class="form-check-label ms-2 mt-1" for="all">All</label>
+        </div>
+        <div class="form-check mb-3">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="invitee"
+          />
+          <label class="form-check-label ms-2 mt-1" for="invitee"
+            >Invitee name</label
+          >
+        </div>
+      </div>
+      <div class="tab-pane fade" id="guests" role="tabpanel">
+        <p class="xsmall">
+          Invite guest by adding their e-mail - they get just the invitation, no
+          access to docs etc.
+        </p>
+        <input
+          type="search"
+          class="form-control mb-3 mt-3"
+          placeholder="Email address..."
+        />
+        <button type="button" class="btn btn-dark mb-3" disabled>
+          Add guest
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
