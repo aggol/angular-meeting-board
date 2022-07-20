@@ -5,8 +5,10 @@
   <ul class="nav nav-tabs divider-btm" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
       <button
-        class="nav-link active"
+        class="nav-link"
+        [class.active]="isButtonBoardActive"
         id="board-tab"
+        (click)="activeButton(true, false)"
         data-bs-toggle="tab"
         data-bs-target="#board"
         type="button"
@@ -18,7 +20,9 @@
     <li class="nav-item" role="presentation">
       <button
         class="nav-link"
+        [class.active]="isButtonGuestsActive"
         id="guests-tab"
+        (click)="activeButton(false, true)"
         data-bs-toggle="tab"
         data-bs-target="#guests"
         type="button"
@@ -28,51 +32,45 @@
       </button>
     </li>
   </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="col-12 mt-2">
-      <div class="tab-pane fade" id="board" role="tabpanel">
-        <input
-          type="search"
-          class="search form-control mb-3 mt-3"
-          placeholder="Search..."
-        />
-        <div class="form-check mb-3">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="all"
-            checked
-          />
 
-          <label class="form-check-label ms-2 mt-1" for="all">All</label>
-        </div>
-        <div class="form-check mb-3">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="invitee"
-          />
-          <label class="form-check-label ms-2 mt-1" for="invitee"
-            >Invitee name</label
-          >
-        </div>
-      </div>
-      <div class="tab-pane fade" id="guests" role="tabpanel">
-        <p class="xsmall">
-          Invite guest by adding their e-mail - they get just the invitation, no
-          access to docs etc.
-        </p>
+  <div class="col-12 mt-2">
+    <div *ngIf="isButtonBoardActive">
+      <input
+        type="search"
+        class="search form-control mb-3 mt-3"
+        placeholder="Search..."
+      />
+      <div class="form-check mb-3">
         <input
-          type="search"
-          class="form-control mb-3 mt-3"
-          placeholder="Email address..."
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="all"
+          checked
         />
-        <button type="button" class="btn btn-dark mb-3" disabled>
-          Add guest
-        </button>
+
+        <label class="form-check-label ms-2 mt-1" for="all">All</label>
       </div>
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" value="" id="invitee" />
+        <label class="form-check-label ms-2 mt-1" for="invitee"
+          >Invitee name</label
+        >
+      </div>
+    </div>
+    <div *ngIf="isButtonGuestsActive">
+      <p class="xsmall">
+        Invite guest by adding their e-mail - they get just the invitation, no
+        access to docs etc.
+      </p>
+      <input
+        type="search"
+        class="form-control mb-3 mt-3"
+        placeholder="Email address..."
+      />
+      <button type="button" class="btn btn-dark mb-3" disabled>
+        Add guest
+      </button>
     </div>
   </div>
 </div>
