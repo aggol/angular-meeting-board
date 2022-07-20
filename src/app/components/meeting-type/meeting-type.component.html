@@ -3,13 +3,37 @@
     <span>Meeting type</span>
   </h5>
   <div class="col-12 mt-3">
-    <button type="button" class="btn btn-outline-dark">Board meeting</button>
-    <button type="button" class="btn btn-outline-dark ms-3">
+    <button
+      type="button"
+      [class.active]="
+        meetingTypeAbstractControl?.value === MeetingTypeEnum?.boardMeeting
+      "
+      class="btn btn-outline-dark"
+      (click)="setMeetingTypeValue(MeetingTypeEnum?.boardMeeting)"
+    >
+      Board meeting
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-dark ms-3"
+      (click)="setMeetingTypeValue(MeetingTypeEnum?.generalAssembly)"
+    >
       General assembly
     </button>
-    <button type="button" class="btn btn-outline-dark ms-3">Other</button>
+    <button
+      type="button"
+      class="btn btn-outline-dark ms-3"
+      (click)="setMeetingTypeValue(MeetingTypeEnum?.other)"
+    >
+      Other
+    </button>
   </div>
-  <div class="col-9 mt-3">
+  <div
+    class="col-9 mt-3"
+    *ngIf="
+      meetingTypeAbstractControl?.value === MeetingTypeEnum?.generalAssembly
+    "
+  >
     <div class="small warning">
       <span>
         <svg

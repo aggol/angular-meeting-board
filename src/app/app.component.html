@@ -13,6 +13,7 @@
 
             <app-meeting-type
               [meetingTypeAbstractControl]="meetingTypeAbstractControl"
+              (meetingTypeValueEventEmitter)="setMeetingNameValue($event)"
             ></app-meeting-type>
             <app-meeting-name
               [meetingNameAbstractControl]="meetingNameAbstractControl"

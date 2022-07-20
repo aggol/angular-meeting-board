@@ -6,9 +6,7 @@ import { AbstractControl } from '@angular/forms';
   templateUrl: './meeting-name.component.html',
   styleUrls: ['./meeting-name.component.css'],
 })
-export class MeetingNameComponent implements OnInit {
+export class MeetingNameComponent {
   @Input() meetingNameAbstractControl: AbstractControl;
   constructor() {}
-
-  ngOnInit() {}
 }

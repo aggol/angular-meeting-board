@@ -1,5 +1,7 @@
 import { Component, OnInit, VERSION } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
+import { MeetingNameEnum } from './enums/meeting-name.enum';
+import { MeetingTypeEnum } from './enums/meeting-type.enum';
 
 @Component({
   selector: 'my-app',
@@ -27,7 +29,26 @@ export class AppComponent implements OnInit {
       guest: new FormControl(),
       boardInvitee: new FormControl(),
     });
-    // this.setForm();
+    this.setForm();
+  }
+
+  private setForm(): void {
+    this.meetingTypeAbstractControl.setValue(MeetingTypeEnum.boardMeeting);
+    this.setMeetingNameValue(MeetingNameEnum.boardMeeting);
+  }
+
+  setMeetingNameValue(value: string) {
+    if (value === MeetingTypeEnum.boardMeeting) {
+      this.meetingNameAbstractControl.setValue(MeetingNameEnum.boardMeeting);
+    }
+
+    if (value === MeetingTypeEnum.generalAssembly) {
+      this.meetingNameAbstractControl.setValue(MeetingNameEnum.generalAssembly);
+    }
+    if (value === MeetingTypeEnum.other) {
+      this.meetingNameAbstractControl.setValue(null);
+    }
+    console.log(this.meetingNameAbstractControl.value);
   }
 
   get meetingTypeAbstractControl(): AbstractControl {
