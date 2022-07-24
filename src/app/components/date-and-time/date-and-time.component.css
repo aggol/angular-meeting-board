@@ -1,0 +1,20 @@
+span {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.time {
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 5px;
+  height: 38px;
+  width: 20px;
+  flex-direction: column-reverse;
+}
+
+input[type='time']::-webkit-calendar-picker-indicator {
+  display: none;
+}

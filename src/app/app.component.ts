@@ -1,5 +1,7 @@
-import { Component, OnInit, VERSION } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
+import { Component, OnDestroy, OnInit, VERSION } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { MeetingNameEnum } from './enums/meeting-name.enum';
 import { MeetingTypeEnum } from './enums/meeting-type.enum';
 
@@ -8,12 +10,14 @@ import { MeetingTypeEnum } from './enums/meeting-type.enum';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+  finish$: Subject<void> = new Subject<void>();
   form: FormGroup;
   constructor() {}
 
   ngOnInit() {
     this.initForm();
+    this.initWatchers();
   }
 
   private initForm(): void {
@@ -24,7 +28,9 @@ export class AppComponent implements OnInit {
       timeFrom: new FormControl(),
       timeTo: new FormControl(),
       address: new FormControl(),
+      addressCheckbox: new FormControl(),
       onlineMeeting: new FormControl(),
+      onlineMeetingCheckbox: new FormControl(),
       allInvitees: new FormControl(),
       guest: new FormControl(),
       boardInvitee: new FormControl(),
@@ -33,61 +39,102 @@ export class AppComponent implements OnInit {
   }
 
   private setForm(): void {
-    this.meetingTypeAbstractControl.setValue(MeetingTypeEnum.boardMeeting);
-    this.setMeetingNameValue(MeetingNameEnum.boardMeeting);
+    this.meetingTypeFormControl.setValue(MeetingTypeEnum.boardMeeting);
+    this.meetingNameFormControl.setValue(MeetingNameEnum.boardMeeting);
+    this.onlineMeetingCheckboxFormControl.setValue(true);
+    this.addressCheckboxFormControl.setValue(false);
+    this.addressFormControl.disable();
+    this.dateFormControl.setValue('2022-12-08');
+    this.timeFromFormControl.setValue('11:00');
+    this.timeToFormControl.setValue('12:30');
+  }
+
+  private initWatchers(): void {
+    this.meetingTypeFormControl?.valueChanges
+      .pipe(takeUntil(this.finish$))
+      .subscribe((value: string): void => {
+        this.setMeetingNameValue(value);
+      });
+
+    this.addressCheckboxFormControl.valueChanges
+      .pipe(takeUntil(this.finish$))
+      .subscribe((value) => {
+        value
+          ? this.addressFormControl.enable()
+          : this.addressFormControl.disable();
+      });
+
+    this.onlineMeetingCheckboxFormControl.valueChanges
+      .pipe(takeUntil(this.finish$))
+      .subscribe((value) => {
+        value
+          ? this.onlineMeetingFormControl.enable()
+          : this.onlineMeetingFormControl.disable();
+      });
   }
 
   setMeetingNameValue(value: string) {
     if (value === MeetingTypeEnum.boardMeeting) {
-      this.meetingNameAbstractControl.setValue(MeetingNameEnum.boardMeeting);
+      this.meetingNameFormControl.setValue(MeetingNameEnum.boardMeeting);
     }
 
     if (value === MeetingTypeEnum.generalAssembly) {
-      this.meetingNameAbstractControl.setValue(MeetingNameEnum.generalAssembly);
+      this.meetingNameFormControl.setValue(MeetingNameEnum.generalAssembly);
     }
     if (value === MeetingTypeEnum.other) {
-      this.meetingNameAbstractControl.setValue(null);
+      this.meetingNameFormControl.setValue(null);
     }
-    console.log(this.meetingNameAbstractControl.value);
   }
 
-  get meetingTypeAbstractControl(): AbstractControl {
-    return this.form.get('meetingType');
+  ngOnDestroy(): void {
+    this.finish$.next();
+    this.finish$.complete();
   }
 
-  get meetingNameAbstractControl(): AbstractControl {
-    return this.form.get('meetingName');
+  get meetingTypeFormControl(): FormControl {
+    return this.form.get('meetingType') as FormControl;
   }
 
-  get dateAbstractControl(): AbstractControl {
-    return this.form.get('date');
+  get meetingNameFormControl(): FormControl {
+    return this.form.get('meetingName') as FormControl;
   }
 
-  get timeFromAbstractControl(): AbstractControl {
-    return this.form.get('timeFrom');
+  get dateFormControl(): FormControl {
+    return this.form.get('date') as FormControl;
   }
 
-  get timeToAbstractControl(): AbstractControl {
-    return this.form.get('timeTo');
+  get timeFromFormControl(): FormControl {
+    return this.form.get('timeFrom') as FormControl;
   }
 
-  get addressAbstractControl(): AbstractControl {
-    return this.form.get('address');
+  get timeToFormControl(): FormControl {
+    return this.form.get('timeTo') as FormControl;
   }
 
-  get onlineMeetingAbstractControl(): AbstractControl {
-    return this.form.get('onlineMeeting');
+  get addressFormControl(): FormControl {
+    return this.form.get('address') as FormControl;
   }
 
-  get allInviteesAbstractControl(): AbstractControl {
-    return this.form.get('allInvitees');
+  get addressCheckboxFormControl(): FormControl {
+    return this.form.get('addressCheckbox') as FormControl;
   }
 
-  get guestAbstractControl(): AbstractControl {
-    return this.form.get('guest');
+  get onlineMeetingFormControl(): FormControl {
+    return this.form.get('onlineMeeting') as FormControl;
   }
 
-  get boardInviteeAbstractControl(): AbstractControl {
-    return this.form.get('boardInvitee');
+  get onlineMeetingCheckboxFormControl(): FormControl {
+    return this.form.get('onlineMeetingCheckbox') as FormControl;
+  }
+  get allInviteesFormControl(): FormControl {
+    return this.form.get('allInvitees') as FormControl;
+  }
+
+  get guestFormControl(): FormControl {
+    return this.form.get('guest') as FormControl;
+  }
+
+  get boardInviteeFormControl(): FormControl {
+    return this.form.get('boardInvitee') as FormControl;
   }
 }

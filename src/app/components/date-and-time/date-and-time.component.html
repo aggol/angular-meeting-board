@@ -2,21 +2,36 @@
   <h5>
     <label>Date and time</label>
   </h5>
-  <div class="col-10 mt-2">
-    <div class="input-group">
-      <!-- <input
-              class="form-control"
-              placeholder="dd/mmm/yyyy"
-              name="dp"
-              [(ngModel)]="model"
-              ngbDatepicker
-              #d="ngbDatepicker"
-            /> -->
-      <!-- <button
-                class="btn btn-outline-secondary calendar"
-                (click)="d.toggle()"
-                type="button"
-              ></button> -->
+  <div class="col-10 mt-3">
+    <div class="row">
+      <div class="col-3">
+        <input
+          id="date"
+          class="form-control"
+          type="date"
+          [formControl]="dateFormControl"
+        />
+      </div>
+
+      <div class="col-2 px-0">
+        <input
+          type="time"
+          id="timeFrom"
+          class="form-control"
+          [formControl]="timeFromFormControl"
+        />
+      </div>
+      <div class="col-1 time">
+        <span>-</span>
+      </div>
+      <div class="col-2 px-0">
+        <input
+          type="time"
+          id="timeTo"
+          class="form-control"
+          [formControl]="timeToFormControl"
+        />
+      </div>
     </div>
   </div>
 </div>

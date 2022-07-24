@@ -42,7 +42,7 @@
       />
       <div class="form-check mb-3">
         <input
-          abstractControl="allInviteesAbstractControl"
+          [formControl]="allInviteesFormControl"
           class="form-check-input"
           type="checkbox"
           value=""
@@ -55,7 +55,7 @@
       <div class="form-check mb-3">
         <input
           class="form-check-input"
-          abstractControl="boardInviteeAbstractControl"
+          [formControl]="boardInviteeFormControl"
           type="checkbox"
           value=""
           id="invitee"
@@ -71,7 +71,7 @@
         access to docs etc.
       </p>
       <input
-        abstractControl="guestAbstractControl"
+        [formControl]="guestFormControl"
         type="search"
         class="form-control mb-3 mt-3"
         placeholder="Email address..."

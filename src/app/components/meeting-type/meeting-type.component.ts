@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { MeetingTypeEnum } from '../../enums/meeting-type.enum';
 
 @Component({
@@ -8,15 +8,13 @@ import { MeetingTypeEnum } from '../../enums/meeting-type.enum';
   styleUrls: ['./meeting-type.component.css'],
 })
 export class MeetingTypeComponent {
-  @Input() meetingTypeAbstractControl: AbstractControl;
+  @Input() meetingTypeFormControl: FormControl;
   @Output() meetingTypeValueEventEmitter: EventEmitter<string> =
     new EventEmitter<string>();
   MeetingTypeEnum: typeof MeetingTypeEnum = MeetingTypeEnum;
 
-  constructor() {}
-
   setMeetingTypeValue(value: string): void {
-    this.meetingTypeAbstractControl.setValue(value);
+    this.meetingTypeFormControl.setValue(value);
     this.meetingTypeValueEventEmitter.emit(value);
   }
 }

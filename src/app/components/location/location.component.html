@@ -4,14 +4,20 @@
   </h5>
   <div class="col-10 mt-3">
     <div class="form-check mb-3">
-      <input class="form-check-input" type="checkbox" value="" id="address" />
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value=""
+        id="address"
+        [formControl]="addressCheckboxFormControl"
+      />
       <label class="form-check-label ms-2 mt-1" for="address">Address</label>
     </div>
     <input
+      [formControl]="addressFormControl"
       type="search"
       class="form-control mb-3"
       placeholder="Address..."
-      disabled
     />
     <div class="form-check mb-3">
       <input
@@ -19,6 +25,7 @@
         type="checkbox"
         value=""
         id="online"
+        [formControl]="onlineMeetingCheckboxFormControl"
         checked
       />
       <label class="form-check-label ms-2 mt-1" for="online"
@@ -26,6 +33,7 @@
       >
     </div>
     <input
+      [formControl]="onlineMeetingFormControl"
       type="search"
       class="form-control"
       placeholder="Paste meeting link..."

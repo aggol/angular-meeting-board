@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-meeting-name',
@@ -7,6 +7,5 @@ import { AbstractControl } from '@angular/forms';
   styleUrls: ['./meeting-name.component.css'],
 })
 export class MeetingNameComponent {
-  @Input() meetingNameAbstractControl: AbstractControl;
-  constructor() {}
+  @Input() meetingNameFormControl: FormControl;
 }

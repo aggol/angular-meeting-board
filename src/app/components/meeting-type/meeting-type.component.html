@@ -6,7 +6,7 @@
     <button
       type="button"
       [class.active]="
-        meetingTypeAbstractControl?.value === MeetingTypeEnum?.boardMeeting
+        meetingTypeFormControl?.value === MeetingTypeEnum?.boardMeeting
       "
       class="btn btn-outline-dark"
       (click)="setMeetingTypeValue(MeetingTypeEnum?.boardMeeting)"
@@ -30,9 +30,7 @@
   </div>
   <div
     class="col-9 mt-3"
-    *ngIf="
-      meetingTypeAbstractControl?.value === MeetingTypeEnum?.generalAssembly
-    "
+    *ngIf="meetingTypeFormControl?.value === MeetingTypeEnum?.generalAssembly"
   >
     <div class="small warning">
       <span>

@@ -12,29 +12,33 @@
             </h4>
 
             <app-meeting-type
-              [meetingTypeAbstractControl]="meetingTypeAbstractControl"
+              [meetingTypeFormControl]="meetingTypeFormControl"
               (meetingTypeValueEventEmitter)="setMeetingNameValue($event)"
             ></app-meeting-type>
             <app-meeting-name
-              [meetingNameAbstractControl]="meetingNameAbstractControl"
+              [meetingNameFormControl]="meetingNameFormControl"
             ></app-meeting-name>
             <app-date-and-time
-              [dateAbstractControl]="dateAbstractControl"
-              [timeFromAbstractControl]="timeFromAbstractControl"
-              [timeToAbstractControl]="timeToAbstractControl"
+              [dateFormControl]="dateFormControl"
+              [timeFromFormControl]="timeFromFormControl"
+              [timeToFormControl]="timeToFormControl"
             ></app-date-and-time>
             <app-location
-              [addressAbstractControl]="addressAbstractControl"
-              [onlineMeetingAbstractControl]="onlineMeetingAbstractControl"
+              [addressFormControl]="addressFormControl"
+              [onlineMeetingFormControl]="onlineMeetingFormControl"
+              [addressCheckboxFormControl]="addressCheckboxFormControl"
+              [onlineMeetingCheckboxFormControl]="
+                onlineMeetingCheckboxFormControl
+              "
             ></app-location>
           </div>
         </div>
       </div>
       <div class="col-4">
         <app-invitees
-          [allInviteesAbstractControl]="allInviteesAbstractControl"
-          [guestAbstractControl]="guestAbstractControl"
-          [boardInviteeAbstractControl]="boardInviteeAbstractControl"
+          [allInviteesFormControl]="allInviteesFormControl"
+          [guestFormControl]="guestFormControl"
+          [boardInviteeFormControl]="boardInviteeFormControl"
         ></app-invitees>
       </div>
     </div>
