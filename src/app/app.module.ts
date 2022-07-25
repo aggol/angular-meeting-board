@@ -8,9 +8,12 @@ import { MeetingNameComponent } from './components/meeting-name/meeting-name.com
 import { DateAndTimeComponent } from './components/date-and-time/date-and-time.component';
 import { LocationComponent } from './components/location/location.component';
 import { InviteesComponent } from './components/invitees/invitees.component';
+import { AppService } from './services/app.service';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, CommonModule, FormsModule, ReactiveFormsModule],
+  providers: [AppService],
   declarations: [
     AppComponent,
     MeetingTypeComponent,

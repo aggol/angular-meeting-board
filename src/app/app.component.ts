@@ -4,6 +4,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MeetingNameEnum } from './enums/meeting-name.enum';
 import { MeetingTypeEnum } from './enums/meeting-type.enum';
+import { BoardInviteeModel } from './models/board-invitee.model';
+import { AppService } from './services/app.service';
 
 @Component({
   selector: 'my-app',
@@ -11,13 +13,22 @@ import { MeetingTypeEnum } from './enums/meeting-type.enum';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
+  boardInvitees: BoardInviteeModel[];
   finish$: Subject<void> = new Subject<void>();
   form: FormGroup;
-  constructor() {}
+
+  constructor(private appService: AppService) {}
 
   ngOnInit() {
+    this.getBoardInvitees();
     this.initForm();
     this.initWatchers();
+  }
+
+  private getBoardInvitees(): void {
+    this.appService
+      .getBoardInvitees()
+      .subscribe((boardInvitees) => (this.boardInvitees = boardInvitees));
   }
 
   private initForm(): void {
@@ -29,24 +40,16 @@ export class AppComponent implements OnInit, OnDestroy {
       timeTo: new FormControl(),
       address: new FormControl(),
       addressCheckbox: new FormControl(),
-      onlineMeeting: new FormControl(),
-      onlineMeetingCheckbox: new FormControl(),
+
+      // lineMeeting and lineMeetingCheckbox as solution for Error: NG0306: Binding to event property 'onlineFormControl' is disallowed for security reasons, had to delete "on" prefix //
+      lineMeeting: new FormControl(),
+      lineMeetingCheckbox: new FormControl(),
+
       allInvitees: new FormControl(),
       guest: new FormControl(),
       boardInvitee: new FormControl(),
     });
     this.setForm();
-  }
-
-  private setForm(): void {
-    this.meetingTypeFormControl.setValue(MeetingTypeEnum.boardMeeting);
-    this.meetingNameFormControl.setValue(MeetingNameEnum.boardMeeting);
-    this.onlineMeetingCheckboxFormControl.setValue(true);
-    this.addressCheckboxFormControl.setValue(false);
-    this.addressFormControl.disable();
-    this.dateFormControl.setValue('2022-12-08');
-    this.timeFromFormControl.setValue('11:00');
-    this.timeToFormControl.setValue('12:30');
   }
 
   private initWatchers(): void {
@@ -64,13 +67,32 @@ export class AppComponent implements OnInit, OnDestroy {
           : this.addressFormControl.disable();
       });
 
-    this.onlineMeetingCheckboxFormControl.valueChanges
+    this.lineMeetingCheckboxFormControl.valueChanges
       .pipe(takeUntil(this.finish$))
       .subscribe((value) => {
         value
-          ? this.onlineMeetingFormControl.enable()
-          : this.onlineMeetingFormControl.disable();
+          ? this.lineMeetingFormControl.enable()
+          : this.lineMeetingFormControl.disable();
       });
+
+    this.allInviteesFormControl.valueChanges
+      .pipe(takeUntil(this.finish$))
+      .subscribe((value) => {
+        this.boardInviteeFormControl.setValue(value);
+      });
+  }
+
+  private setForm(): void {
+    this.meetingTypeFormControl.setValue(MeetingTypeEnum.boardMeeting);
+    this.meetingNameFormControl.setValue(MeetingNameEnum.boardMeeting);
+    this.lineMeetingCheckboxFormControl.setValue(true);
+    this.addressCheckboxFormControl.setValue(false);
+    this.addressFormControl.disable();
+    this.dateFormControl.setValue('2022-12-08');
+    this.timeFromFormControl.setValue('11:00');
+    this.timeToFormControl.setValue('12:30');
+    this.allInviteesFormControl.setValue(true);
+    this.boardInviteeFormControl.setValue(this.allInviteesFormControl?.value);
   }
 
   setMeetingNameValue(value: string) {
@@ -119,12 +141,12 @@ export class AppComponent implements OnInit, OnDestroy {
     return this.form.get('addressCheckbox') as FormControl;
   }
 
-  get onlineMeetingFormControl(): FormControl {
-    return this.form.get('onlineMeeting') as FormControl;
+  get lineMeetingFormControl(): FormControl {
+    return this.form.get('lineMeeting') as FormControl;
   }
 
-  get onlineMeetingCheckboxFormControl(): FormControl {
-    return this.form.get('onlineMeetingCheckbox') as FormControl;
+  get lineMeetingCheckboxFormControl(): FormControl {
+    return this.form.get('lineMeetingCheckbox') as FormControl;
   }
   get allInviteesFormControl(): FormControl {
     return this.form.get('allInvitees') as FormControl;

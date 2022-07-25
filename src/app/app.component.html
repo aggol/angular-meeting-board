@@ -25,11 +25,9 @@
             ></app-date-and-time>
             <app-location
               [addressFormControl]="addressFormControl"
-              [onlineMeetingFormControl]="onlineMeetingFormControl"
+              [lineMeetingFormControl]="lineMeetingFormControl"
               [addressCheckboxFormControl]="addressCheckboxFormControl"
-              [onlineMeetingCheckboxFormControl]="
-                onlineMeetingCheckboxFormControl
-              "
+              [lineMeetingCheckboxFormControl]="lineMeetingCheckboxFormControl"
             ></app-location>
           </div>
         </div>
@@ -39,6 +37,7 @@
           [allInviteesFormControl]="allInviteesFormControl"
           [guestFormControl]="guestFormControl"
           [boardInviteeFormControl]="boardInviteeFormControl"
+          [boardInvitees]="boardInvitees"
         ></app-invitees>
       </div>
     </div>

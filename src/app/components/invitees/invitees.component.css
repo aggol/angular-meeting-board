@@ -56,3 +56,11 @@ button:disabled {
   background-color: #eaeaea;
   border-color: #eaeaea;
 }
+
+.divider-top {
+  border-top: 1px solid #bebbc5;
+}
+
+.role {
+  color: #aaafbc;
+}
